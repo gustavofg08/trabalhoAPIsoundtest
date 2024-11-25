@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tocar Áudio Aleatório</title>
+</head>
+<body>
+    <h1>Tocar Áudio Aleatório</h1>
+    <button id="play-audio-button">Clique para tentar tocar o áudio</button>
+    <p id="result"></p>
+    <audio id="audio" src="teste.mp3"></audio> <!-- Adicione seu arquivo de áudio aqui -->
+
+    <script>
+        // Função para decidir se o áudio deve ser tocado
+        function randomPlayAudio(chance = 0.5) {
+            const randomNumber = Math.random(); // Gera um número aleatório entre 0 e 1
+            return randomNumber < chance;      // Retorna true se estiver dentro da chance
+        }
+
+        // Adiciona evento ao botão
+        document.getElementById("play-audio-button").addEventListener("click", () => {
+            const shouldPlay = randomPlayAudio(0.5); // 50% de chance
+            const resultElement = document.getElementById("result");
+            const audioElement = document.getElementById("audio");
+
+            if (shouldPlay) {
+                audioElement.play(); // Toca o áudio
+                resultElement.textContent = "Áudio está tocando!";
+            } else {
+                resultElement.textContent = "Nada aconteceu.";
+            }
+        });
+    </script>
+</body>
+</html>
